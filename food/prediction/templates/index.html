@@ -75,8 +75,9 @@
                     {% csrf_token %}
                 </div>
                 <div class="mb-3">
-                    <label for="keyword" class="form-label">キーワード: 例 夜景が綺麗等</label>
-                    <input type="text" id="keyword" name="keyword" class="form-control" required>
+                    <label for="keyword" class="form-label">キーワード：</label>
+                    <input type="text" id="keyword" name="keyword" class="form-control" placeholder="夜景が綺麗等" required>
+               
                 </div>
                 <div class="mb-3">
                     <label for="prefecture" class="form-label">都道府県:</label>
@@ -88,7 +89,7 @@
                                 {% endfor %}
                             </optgroup>
                         {% endfor %}
-                    </select>
+                    </select> 
                 </div>
                 <div class="mb-3">
                     <label for="budget" class="form-label">予算:</label>

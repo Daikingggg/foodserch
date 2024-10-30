@@ -103,8 +103,6 @@ def index(request):
     return render(request, 'index.html', {'prefectures': prefectures, 'budget_mapping': budget_mapping})
 
 
-
-
 @csrf_exempt
 def search(request):
     if request.method == 'POST':
@@ -133,14 +131,17 @@ def search(request):
             shops = data['results']['shop']
             shop_embeddings = []
 
+            
             for shop in shops:
-                description = shop.get('name', '')
+                # descriptionをここで設定
+                description = shop.get('name', '') + ' ' + shop.get('genre', {}).get('name', '') + ' ' + shop.get('genre', {}).get('catch', '') + ' ' + shop.get('catch', '')
                 embedding = get_embedding(description)
                 shop_embeddings.append((shop, embedding))
 
             # キーワードのベクトルを取得
             keyword_embedding = get_embedding(keyword)
-
+            
+            
             # コサイン類似度を計算して類似度でソート
             similarities = []
             for shop, embedding in shop_embeddings:
